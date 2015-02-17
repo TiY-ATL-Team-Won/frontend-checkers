@@ -1,3 +1,5 @@
-## Yo, I'm a Readme
+## Checkers
 
-You should probably update me so people looking at your code have an idea what it is being used for :)
+Build:
+  - `npm install`
+  - `bower install`

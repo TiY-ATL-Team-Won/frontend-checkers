@@ -2,7 +2,7 @@
 
 'use strict';
 
-app.login = new app.loginView();
+app.welcome = new app.welcomeView();
 
 
 }());

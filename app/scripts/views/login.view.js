@@ -3,7 +3,7 @@
 'use strict';
 
 app.loginView = Backbone.View.extend({
-  className: 'loginContaier',
+  className: 'login-contaier',
 
   events: {
     'submit': 'login',
@@ -16,7 +16,7 @@ app.loginView = Backbone.View.extend({
   },
   
   render: function() {
-    $('.display').append(this.el);
+    $('.display').empty().append(this.el);
     this.$el.html(this.template());
   },
 
@@ -24,7 +24,10 @@ app.loginView = Backbone.View.extend({
     e.preventDefault();
     // verify password has @
     // verify password at least 8 characters
-  }
+    var email = $('input[name="email"]').val();
+    var pw    = $('input[name="password"]').val();
+    console.log(email, pw);
+  },
 
 });
 

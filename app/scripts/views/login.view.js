@@ -2,7 +2,7 @@
 
 'use strict';
 
-app.loginView = Backbone.View.extend({
+app.LoginView = Backbone.View.extend({
   className: 'login-contaier',
 
   events: {
@@ -16,7 +16,7 @@ app.loginView = Backbone.View.extend({
     },
 
   render: function() {
-    $('.display').empty().append(this.el);
+    $('.display').html(this.el);
     this.$el.html(this.template());
   },
 
@@ -30,8 +30,8 @@ app.loginView = Backbone.View.extend({
     
     };
 
-    //var url = 'http://protected-forest-2584.herokuapp.com/users/sign_in';
-    var url = 'http://protected-forest-2584.herokuapp.com/users/';
+    var url = 'http://protected-forest-2584.herokuapp.com/users/sign_in';
+    //var url = 'http://protected-forest-2584.herokuapp.com/users/';
     $.post(url, payload)
       .done( function(data) {
       // redirect to gameboard/mainpage.. what have you
@@ -42,10 +42,12 @@ app.loginView = Backbone.View.extend({
       app.user = new app.User({ auth_token: data.user.authentication_token,
                                 email: data.user.email
                               });
-
+      
+      app.main.navigate('game', { trigger: true });
     })
-    .fail( function() {
-        $('span').html("ERROR!!! " + JSON.stringify(payload));
+    .fail( function(data) {
+        var err = JSON.parse(data.responseText);
+        $('span').html(err.error);
       });
 
   },

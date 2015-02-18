@@ -18,12 +18,11 @@ app.userView = Backbone.Views.extend ({
   },
   	render: function() {
     $('.display').html(this.el);
-    this.$el.html(this.template(app.user));
+    this.$el.html(this.template(app.user.attributes));
   }
 
   	
     
-
 
 });
 

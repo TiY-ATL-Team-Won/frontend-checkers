@@ -3,7 +3,7 @@
 'use strict';
 
 
-app.registerView = Backbone.View.extend ({
+app.RegisterView = Backbone.View.extend ({
   classname: 'register-container',
 
 	events: {

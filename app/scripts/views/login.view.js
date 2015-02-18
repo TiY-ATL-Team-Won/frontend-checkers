@@ -14,7 +14,7 @@ app.loginView = Backbone.View.extend({
   initialize: function() {
     this.render();
   },
-  
+
   render: function() {
     $('.display').empty().append(this.el);
     this.$el.html(this.template());
@@ -28,7 +28,7 @@ app.loginView = Backbone.View.extend({
     var pw    = $('input[name="password"]').val();
 
     if (email.indexOf('@') === -1) {
-      $('span').html("email yo"); 
+      $('span').html("email yo");
       return;
     }
 
@@ -45,11 +45,16 @@ app.loginView = Backbone.View.extend({
     };
 
     var url = '/users/sign_in/';
-    $.post(url, payload).done( function() {
-
-    }).fail( function() {
+    $.post(url, payload)
+      .done( function() {
+      // SUCCESS!
+      // set cookie
+      // redirect to gameboard/mainpage.. what have you
+    })
+    .fail( function() {
         $('span').html("ERROR!!! " + JSON.stringify(payload));
       });
+
     console.log(email, pw);
   },
 

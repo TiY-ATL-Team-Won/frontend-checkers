@@ -11,9 +11,9 @@ app.loginView = Backbone.View.extend({
 
   template: Handlebars.templates.login,
 
-  initialize: function() {
-    this.render();
-  },
+    initialize: function() {
+      this.render();
+    },
 
   render: function() {
     $('.display').empty().append(this.el);
@@ -27,21 +27,7 @@ app.loginView = Backbone.View.extend({
     var email = $('input[name="email"]').val();
     var pw    = $('input[name="password"]').val();
 
-    if (email.indexOf('@') === -1) {
-      $('span').html("email yo");
-      return;
-    }
-
-    if (pw.length < 8) {
-      $('span').html("Password is too short");
-      return;
-    }
-
-    var payload = {
-      user: {
-        email: email,
-        password: pw
-      }
+    
     };
 
     //var url = 'http://protected-forest-2584.herokuapp.com/users/sign_in';

@@ -22,8 +22,13 @@ app.welcomeView = Backbone.View.extend({
   },
 
   redirect: function(e) {
-    app.login = new app.loginView();
-    console.log("clicked");
+    if (e.currentTarget.className === 'btn-login') {
+      app.login = new app.loginView();
+    }
+
+    if (e.currentTarget.className === 'btn-register') {
+      console.log("REGISTER");
+    }
   },
 
 

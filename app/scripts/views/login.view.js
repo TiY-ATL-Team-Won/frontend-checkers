@@ -26,6 +26,19 @@ app.loginView = Backbone.View.extend({
     // verify password at least 8 characters
     var email = $('input[name="email"]').val();
     var pw    = $('input[name="password"]').val();
+
+    if (email.indexOf('@') === -1) {
+      $('span').html("email yo"); 
+      return;
+    }
+
+    if (pw.length < 8) {
+      $('span').html("Password is too short");
+      return;
+    }
+
+    // Show errors
+    // $('span')
     console.log(email, pw);
   },
 

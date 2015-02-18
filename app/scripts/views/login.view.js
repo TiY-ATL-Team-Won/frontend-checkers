@@ -37,8 +37,19 @@ app.loginView = Backbone.View.extend({
       return;
     }
 
-    // Show errors
-    // $('span')
+    var payload = {
+      user: {
+        email: email,
+        password: pw
+      }
+    };
+
+    var url = '/users/sign_in/';
+    $.post(url, payload).done( function() {
+
+    }).fail( function() {
+        $('span').html("ERROR!!! " + JSON.stringify(payload));
+      });
     console.log(email, pw);
   },
 

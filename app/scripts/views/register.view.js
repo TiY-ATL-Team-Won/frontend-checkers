@@ -4,7 +4,7 @@
 
 
 app.registerView = Backbone.View.extend ({
-	classname = 'register-container',
+  classname: 'register-container',
 
 	events: {
 		'submit': 'register',
@@ -22,7 +22,7 @@ app.registerView = Backbone.View.extend ({
   	},
 
   	register: function(e) {
-  		e.preventDefault;
+  		e.preventDefault();
 
   		 var email = $('input[name="email"]').val();
     	 var pw1    = $('input[name="password1"]').val();

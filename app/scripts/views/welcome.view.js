@@ -27,7 +27,7 @@ app.welcomeView = Backbone.View.extend({
     }
 
     if (e.currentTarget.className === 'btn-register') {
-      console.log("REGISTER");
+      app.regisgter = new app.registerView();
     }
   },
 

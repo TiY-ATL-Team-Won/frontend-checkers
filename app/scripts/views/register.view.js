@@ -59,7 +59,11 @@ app.registerView = Backbone.View.extend ({
       document.cookie = "email=" + data.user.email;
       document.cookie = "path=/";
      // document.cookie = "expires=Fri, 31 Dec 9999 23:59:59 GMT";//
-      
+     app.user = new app.User({ auth_token: data.user.authentication_token,
+                                email: data.user.email
+                              }); 
+
+     
     })
     .fail( function() {
         $('span').html("ERROR!!! " + JSON.stringify(payload));

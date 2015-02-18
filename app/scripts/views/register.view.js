@@ -17,7 +17,7 @@ app.registerView = Backbone.View.extend ({
 	},
 
 	render: function() {
-    $('.display').empty().append(this.el);
+    $('.display').html(this.el);
     this.$el.html(this.template());
   	},
 
@@ -43,13 +43,36 @@ app.registerView = Backbone.View.extend ({
     	 		return;
     	 	}
 
+        var payload = {
+            user: {
+            email: email,
+        password: pw
+      }
+    };
+
+    var url = 'http://protected-forest-2584.herokuapp.com/users/';
+    $.post(url, payload)
+      .done( function(data) {
+      // SUCCESS!
+      // redirect to gameboard/mainpage.. what have you
+      document.cookie = "authentication_token=" + data.user.authentication_token;
+      document.cookie = "email=" + data.user.email;
+      document.cookie = "path=/";
+     // document.cookie = "expires=Fri, 31 Dec 9999 23:59:59 GMT";//
+      
+    })
+    .fail( function() {
+        $('span').html("ERROR!!! " + JSON.stringify(payload));
+      });
 
 
-    		   console.log(email, pw);
-  },
+   }, 
+    		   
+  
+
+    
 
 });
-
   	
 
 	

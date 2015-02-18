@@ -25,7 +25,8 @@ app.registerView = Backbone.View.extend ({
   		e.preventDefault;
 
   		 var email = $('input[name="email"]').val();
-    	 var pw    = $('input[name="password"]').val();
+    	 var pw1    = $('input[name="password1"]').val();
+       var pw2    = $('input[name="password2"]').val();
 
     		if (email.indexOf('@') === -1) {
       			$('span').html("email yo"); 
@@ -36,9 +37,8 @@ app.registerView = Backbone.View.extend ({
       			$('span').html("Password is too short");
       			return;
     		}
-    	 var verify = $('input[name="password"]').val();
 
-    	 	if var pw === !var verify {
+    	 	if (pw1 !== pw2) {
     	 		$('span').html("Passwords do not match");
     	 		return;
     	 	}

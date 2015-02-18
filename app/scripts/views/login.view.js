@@ -44,12 +44,16 @@ app.loginView = Backbone.View.extend({
       }
     };
 
-    var url = '/users/sign_in/';
+    var url = 'http://protected-forest-2584.herokuapp.com/users/';
     $.post(url, payload)
-      .done( function() {
+      .done( function(data) {
       // SUCCESS!
-      // set cookie
       // redirect to gameboard/mainpage.. what have you
+      document.cookie = "authentication_token=" + data.user.authentication_token;
+      document.cookie = "email=" + data.user.email;
+      document.cookie = "path=/";
+      document.cookie = "expires=Fri, 31 Dec 9999 23:59:59 GMT";
+      console.log(data);
     })
     .fail( function() {
         $('span').html("ERROR!!! " + JSON.stringify(payload));

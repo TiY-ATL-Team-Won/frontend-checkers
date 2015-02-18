@@ -2,7 +2,6 @@
 
 'use strict';
 
-app.welcome = new app.welcomeView();
-
+app.main = new app.mainRouter();
 
 }());

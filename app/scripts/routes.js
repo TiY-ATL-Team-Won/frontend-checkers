@@ -6,35 +6,34 @@ app.mainRouter = Backbone.Router.extend({
 
   initialize: function() {
     Backbone.history.start();
-    setTimeout(function() {
-      console.log("asdf");
-      console.log(app.user);
-      if(app.user === undefined) {
-        app.main.navigate('', { trigger: true });
-      }}, 100);
   },
 
   routes: {
     '': 'welcome',
     'login': 'login',
     'register': 'register',
+    'user': 'user',
     'game': 'game',
   },
 
   welcome: function() {
-    app.welcome = new app.welcomeView();
+    app.welcomeView = new app.WelcomeView();
   },
 
   login: function() {
-    app.login = new app.loginView();
+    app.loginView = new app.LoginView();
   },
 
   register: function() {
-    app.register = new app.registerView();
+    app.registerView = new app.RegisterView();
+  },
+
+  user: function() {
+    app.userView = new app.UserView();
   },
 
   game: function() {
-    app.game = new app.gameView();
+    app.gameView = new app.GameView();
   },
 
 

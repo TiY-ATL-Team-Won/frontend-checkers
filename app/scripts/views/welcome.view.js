@@ -2,7 +2,7 @@
 
 'use strict';
 
-app.welcomeView = Backbone.View.extend({
+app.WelcomeView = Backbone.View.extend({
   className: 'welcome-container',
 
   template: Handlebars.templates.welcome,

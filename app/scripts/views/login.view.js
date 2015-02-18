@@ -2,7 +2,7 @@
 
 'use strict';
 
-app.loginView = Backbone.View.extend({
+app.LoginView = Backbone.View.extend({
   className: 'login-contaier',
 
   events: {

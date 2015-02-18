@@ -2,7 +2,7 @@
 
 'use strict';
 
-app.gameView = Backbone.View.extend({
+app.GameView = Backbone.View.extend({
   className: 'game-container',
 
   template: Handlebars.templates.game,

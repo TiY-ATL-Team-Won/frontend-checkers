@@ -1,10 +1,9 @@
 ;(function () {
 
-
 'use strict';
 
-app.userView = Backbone.Views.extend ({
-	className: 'user container';
+app.UserView = Backbone.View.extend({
+	className: 'user container',
 
 	events: {
 		//unknown right now//
@@ -27,5 +26,5 @@ app.userView = Backbone.Views.extend ({
 });
 
 
-}()):
+}());
 

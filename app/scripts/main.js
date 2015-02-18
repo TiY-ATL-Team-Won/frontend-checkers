@@ -1,1 +1,8 @@
-console.log('The Iron Yard Rocks');
+;(function() {
+
+'use strict';
+
+app.login = new app.loginView();
+
+
+}());

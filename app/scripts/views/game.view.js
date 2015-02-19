@@ -8,12 +8,13 @@ app.GameView = Backbone.View.extend({
   template: Handlebars.templates.game,
 
   initialize: function() {
-   this.render();
+    app.board = app.board || {};
+    this.render();
   },
 
   render: function() {
     $('.display').html(this.el);
-    this.$el.html(this.template());
+    this.$el.html(this.template(app.board));
   },
 
 

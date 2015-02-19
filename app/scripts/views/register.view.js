@@ -4,7 +4,7 @@
 
 
 app.RegisterView = Backbone.View.extend ({
-  classname: 'register-container',
+  className: 'register-container',
 
 	events: {
 		'submit': 'register',

@@ -21,12 +21,14 @@ app.mainRouter = Backbone.Router.extend({
     app.userCookie = {};
     var tmp = document.cookie.split(';');
 
-    for (var i = 0; i < tmp.length; i++) {
-      var kv = tmp[i].split('=');
-      app.userCookie[kv[0]] = kv[1];
+    if(tmp.length !== 1) {
+      for (var i = 0; i < tmp.length; i++) {
+        var kv = tmp[i].split('=');
+        app.userCookie[kv[0].trim()] = kv[1].trim();
+      }
     }
 
-    if(Object.keys(app.userCookie).length === 1) {
+    if(Object.keys(app.userCookie).length === 0) {
       if (callback == this.welcome || callback == this.login || callback == this.register) {
         callback.apply(this, args);
       } else {

@@ -3,7 +3,7 @@
 'use strict'
 
 app.RankView = Backbone.View.extend({
-	className: 'rank container',
+	className: 'rank-container',
 
 	events: {
 		//unknown right now//
@@ -17,7 +17,7 @@ app.RankView = Backbone.View.extend({
   },
   	render: function() {
     $('.display').html(this.el);
-    this.$el.html(this.template(app.user.attributes));
+    this.$el.html(this.template(app.rank.attributes));
   }
 
   	

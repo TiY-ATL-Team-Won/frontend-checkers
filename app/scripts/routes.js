@@ -34,8 +34,10 @@ app.mainRouter = Backbone.Router.extend({
 
   game: function() {
     app.gameView = new app.GameView();
+
   },
 
+  
 
 });
 

@@ -6,7 +6,7 @@ app.GameView = Backbone.View.extend({
   className: 'game-container',
 
   events: {
-
+    'click span': function(e) { console.log(e); }
   },
 
   template: Handlebars.templates.game,

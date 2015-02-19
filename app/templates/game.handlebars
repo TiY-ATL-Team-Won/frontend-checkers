@@ -1,7 +1,8 @@
 <div>GAME VIEW</div>
-{{attributes}}
-{{#each models}}
-
-    <div class="{{attributes.type}}" id="{{attributes.id}}>{{type}}</div>
-
+{{#each this}}
+    <div>
+    {{#each this}}
+        <span data-row="{{row}}" data-col="{{col}}" data-color="{{this.color}}" class="checker{{this.type}}"></span>
+    {{/each}}
+    </div>
 {{/each}}

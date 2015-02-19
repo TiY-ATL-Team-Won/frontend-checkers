@@ -64,7 +64,7 @@ app.RegisterView = Backbone.View.extend ({
      app.user = new app.User({ auth_token: data.user.authentication_token,
                                 email: data.user.email
                               }); 
-     app.user.navigate('user', {trigger: true});
+     app.main.navigate('user', {trigger: true});
      
       })
      

@@ -46,7 +46,6 @@ app.LoginView = Backbone.View.extend({
 
 
     var url = 'http://protected-forest-2584.herokuapp.com/users/sign_in';
-    //var url = 'http://protected-forest-2584.herokuapp.com/users/';
     $.post(url, payload)
       .done( function(data) {
       document.cookie = "authentication_token=" + data.user.authentication_token;

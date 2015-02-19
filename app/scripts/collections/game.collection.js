@@ -2,12 +2,13 @@
 
 'use strict';
 
-app.Game = Backbone.Collection.extend({
-  url: '',
+app.GameCollection = Backbone.Collection.extend({
 
-  initialize: function() {
+  initialize: function(board) {
 
   },
+
+  model: app.Checker,
 
 
 

@@ -20,7 +20,13 @@ app.User = Backbone.Model.extend({
     
   },
 
+url: 'http://tiy-atl-fe-server.herokuapp.com/collections/asdfjlahsldjhfiuehoaiuhsdofuhoaiushdfouhasodfuhaosudhfoaiushdf;'
 
-});
+
+
+
+}); 
+
+
 
 }());

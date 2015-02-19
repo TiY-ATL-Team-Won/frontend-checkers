@@ -21,7 +21,7 @@ app.UserView = Backbone.View.extend({
   }
 
   	
-  model.fetch()
+  
 
 });
 

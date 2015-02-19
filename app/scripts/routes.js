@@ -39,10 +39,12 @@ app.mainRouter = Backbone.Router.extend({
                                 email: app.userCookie.email
                               });
 
+      $.ajaxSetup({
+        headers: { 'auth-token': app.userCookie.authentication_token }
+      });
 
        if (callback == this.welcome || callback == this.login || callback == this.register) {
          app.main.navigate('user', { trigger: true });
-         //this.user();
       } else {
         callback.apply(this, args);
       }

@@ -81,3 +81,20 @@ a {
     }
   }
 }
+
+
+
+// BOARD + CHECKERS
+span[data-color] {
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+}
+
+span[data-color="white"] {
+  background-color: white;
+}
+
+span[data-color="black"] {
+  background-color: black;
+}

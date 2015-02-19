@@ -60,6 +60,7 @@ app.LoginView = Backbone.View.extend({
 
       app.main.navigate('game', { trigger: true });
     })
+  
     .fail( function(data) {
         var err = JSON.parse(data.responseText);
         $('span').html(err.error);

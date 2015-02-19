@@ -9,18 +9,75 @@ body {
   color: #333;
 }
 
-.hero-unit {
-  margin: 50px auto 0 auto;
-  width: 600px;
-  font-size: 18px;
-  font-weight: 200;
-  line-height: 30px;
-  background-color: #eee;
-  border-radius: 6px;
-  padding: 60px;
-  h1 {
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
+a {
+  text-decoration: none;
+}
+
+
+.display {
+  overflow: auto;
+  margin: 0 auto;
+}
+
+.welcome-container {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  width: 30%;
+  text-align: center;
+  margin: 0 auto;
+  
+  div {
+    padding: 8px 12px;
+  }
+
+  .btn-login {
+    background-color: green;
+    color: white;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+
+    &:hover {
+      background-color: lightgreen;
+    }
+  }
+
+  .btn-register {
+    background-color: blue;
+    color: white;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+
+    &:hover {
+      background-color: lightblue;
+    }
+  }
+}
+
+.login-container, .register-container {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  width: 50%;
+  margin: 0 auto;
+
+  input[type="text"], input[type="password"] {
+    border-radius: 3px;
+    border: 1px solid lightgray;
+    padding: 5px;
+    margin: 5px 0;
+    width: 100%;
+  }
+
+  input[type="submit"] {
+    background-color: green;
+    color: white;
+    border: 1px solid lightgreen;
+    padding: 8px 12px;
+    width: 100%;
+    border-radius: 3px;
+
+    &:hover {
+      background-color: lightgreen;
+      border: 1px solid green;
+    }
   }
 }

@@ -12,6 +12,11 @@ body {
 
 a {
   text-decoration: none;
+  color: white;
+
+  &:visited {
+    color: white;
+  }
 }
 
 
@@ -19,6 +24,23 @@ a {
   overflow: auto;
   margin: 0 auto;
 }
+
+.nav {
+  list-style: none;
+  background-color: black;
+
+  li {
+    display: inline-block;
+    padding: 8px 12px;
+    color: white;
+    background-color: black;
+
+    &:hover {
+      background-color: gray;
+    }
+  }
+}
+
 
 .welcome-container {
   padding-top: 25px;
@@ -75,11 +97,20 @@ a {
     padding: 8px 12px;
     width: 100%;
     border-radius: 3px;
+    margin-bottom: 12px;
 
     &:hover {
       background-color: lightgreen;
       border: 1px solid green;
     }
+  }
+
+  span.error {
+    width: 100%;
+    color: white;
+    background-color: red;
+    padding: 8px 12px;
+    margin-top: 12px;
   }
 }
 
@@ -90,12 +121,36 @@ span[data-color] {
   width: 25px;
   height: 25px;
   display: inline-block;
+  margin: 0;
+  font-size: 0;
 }
 
 span[data-color="white"] {
+  border: 3px solid white;
   background-color: white;
 }
 
 span[data-color="black"] {
+  border: 3px solid black;
   background-color: black;
+  
+  &.selected {
+    border: 3px solid green;
+  }
+}
+
+span[data-row="0"] {
+  border-top: 3px solid black;
+}
+
+span[data-col="0"] {
+  border-left: 3px solid black;
+}
+
+span[data-row="7"] {
+  border-bottom: 3px solid black;
+}
+
+span[data-col="7"] {
+  border-right: 3px solid black;
 }

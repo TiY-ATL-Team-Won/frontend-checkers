@@ -7,17 +7,23 @@ templates['game'] = template({"1":function(depth0,helpers,partials,data) {
     + ((stack1 = helpers.each.call(depth0,depth0,{"name":"each","hash":{},"fn":this.program(2, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "    </div>\n";
 },"2":function(depth0,helpers,partials,data) {
-    var helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression, alias4=this.lambda;
+    var stack1, helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression, alias4=this.lambda;
 
   return "        <span data-row=\""
     + alias3(((helper = (helper = helpers.row || (depth0 != null ? depth0.row : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"row","hash":{},"data":data}) : helper)))
     + "\" data-col=\""
     + alias3(((helper = (helper = helpers.col || (depth0 != null ? depth0.col : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"col","hash":{},"data":data}) : helper)))
+    + "\" data-type=\""
+    + alias3(alias4((depth0 != null ? depth0.type : depth0), depth0))
     + "\" data-color=\""
     + alias3(alias4((depth0 != null ? depth0.color : depth0), depth0))
-    + "\" class=\"checker"
-    + alias3(alias4((depth0 != null ? depth0.type : depth0), depth0))
-    + "\"></span>\n";
+    + "\">\n"
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.type : depth0),{"name":"if","hash":{},"fn":this.program(3, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "        </span>\n";
+},"3":function(depth0,helpers,partials,data) {
+    return "            <img src=\"images/"
+    + this.escapeExpression(this.lambda((depth0 != null ? depth0.type : depth0), depth0))
+    + ".png\" />\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var stack1;
 

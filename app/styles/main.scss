@@ -95,10 +95,12 @@ span[data-color] {
 }
 
 span[data-color="white"] {
+  border: 3px solid white;
   background-color: white;
 }
 
 span[data-color="black"] {
+  border: 3px solid black;
   background-color: black;
   
   &.selected {
@@ -107,17 +109,17 @@ span[data-color="black"] {
 }
 
 span[data-row="0"] {
-  border-top: 1px solid black;
+  border-top: 3px solid black;
 }
 
 span[data-col="0"] {
-  border-left: 1px solid black;
+  border-left: 3px solid black;
 }
 
 span[data-row="7"] {
-  border-bottom: 1px solid black;
+  border-bottom: 3px solid black;
 }
 
 span[data-col="7"] {
-  border-right: 1px solid black;
+  border-right: 3px solid black;
 }

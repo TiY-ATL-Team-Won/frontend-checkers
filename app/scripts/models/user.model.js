@@ -8,10 +8,10 @@ app.User = Backbone.Model.extend({
 
   },
 
-   defaults: {
-      auth_token: '',
-      email: '',
-      stats: {
+  defaults: {
+    auth_token: '',
+    email: '',
+    stats: {
       win:  0,
       lose: 0,
       draw: 0,
@@ -20,7 +20,6 @@ app.User = Backbone.Model.extend({
     
   },
 
- app.userUrl: 'http://protected-forest-2584.herokuapp.com/';
 
   });
 

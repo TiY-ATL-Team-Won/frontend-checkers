@@ -20,8 +20,7 @@ app.User = Backbone.Model.extend({
     
   },
 
- //app.userUrl: 'http://tiy-atl-fe-server.herokuapp.com/collections/asdfjlahsldjhfiuehoaiuhsdofuhoaiushdfouhasodfuhaosudhfoaiushdf;'//
-  
+ app.userUrl: 'http://protected-forest-2584.herokuapp.com/';
 
   });
 

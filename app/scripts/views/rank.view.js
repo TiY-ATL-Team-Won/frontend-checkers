@@ -6,7 +6,8 @@ app.RankView = Backbone.View.extend({
 	className: 'rank-container',
 
 	events: {
-		//unknown right now//
+		'submit': 'createNewUser',
+    //unknown right now//
 
 	},
 
@@ -14,24 +15,25 @@ app.RankView = Backbone.View.extend({
 
 	initialize: function() {
     this.render();
+    console.log('this');
   },
   
 render: function() {
   var self = this;
-  $.get(app.userUrl).done( function() {
-    $('.display').html(self.el);
-      self.$el.html(self.template(app.user));
-  });
-},
-  	
+  $.get(app.rootUrl + 'users/' + app.user.id).done (function (data) {
+    
+ }
+
+
+ 
     
 
-});
+};
 
 
-}());
+}());ß
 
 
 
-
+//("email", "score", "current games")
  

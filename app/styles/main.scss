@@ -90,6 +90,8 @@ span[data-color] {
   width: 25px;
   height: 25px;
   display: inline-block;
+  margin: 0;
+  font-size: 0;
 }
 
 span[data-color="white"] {
@@ -98,4 +100,24 @@ span[data-color="white"] {
 
 span[data-color="black"] {
   background-color: black;
+  
+  &.selected {
+    border: 3px solid green;
+  }
+}
+
+span[data-row="0"] {
+  border-top: 1px solid black;
+}
+
+span[data-col="0"] {
+  border-left: 1px solid black;
+}
+
+span[data-row="7"] {
+  border-bottom: 1px solid black;
+}
+
+span[data-col="7"] {
+  border-right: 1px solid black;
 }

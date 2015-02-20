@@ -2,7 +2,11 @@
 {{#each this}}
     <div>
     {{#each this}}
-        <span data-row="{{row}}" data-col="{{col}}" data-color="{{this.color}}" class="checker{{this.type}}"></span>
+        <span data-row="{{row}}" data-col="{{col}}" data-type="{{this.type}}" data-color="{{this.color}}">
+          {{#if this.type}}
+            <img src="images/{{this.type}}.png" />
+          {{/if}}
+        </span>
     {{/each}}
     </div>
 {{/each}}

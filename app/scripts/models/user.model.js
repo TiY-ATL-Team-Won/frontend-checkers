@@ -8,10 +8,10 @@ app.User = Backbone.Model.extend({
 
   },
 
-  defaults: {
-    auth_token: '',
-    email: '',
-    stats: {
+   defaults: {
+      auth_token: '',
+      email: '',
+      stats: {
       win:  0,
       lose: 0,
       draw: 0,
@@ -20,12 +20,19 @@ app.User = Backbone.Model.extend({
     
   },
 
-url: 'http://tiy-atl-fe-server.herokuapp.com/collections/asdfjlahsldjhfiuehoaiuhsdofuhoaiushdfouhasodfuhaosudhfoaiushdf;'
+ //app.userUrl: 'http://tiy-atl-fe-server.herokuapp.com/collections/asdfjlahsldjhfiuehoaiuhsdofuhoaiushdfouhasodfuhaosudhfoaiushdf;'//
+ 
+  rank = new app.User(defaults);
 
+    rank.fetch({
+    success: function(rank){
+    console.log(rank());
+    }
+  });
 
+});
 
-
-}); 
+ 
 
 
 

@@ -28,12 +28,14 @@ app.LoginView = Backbone.View.extend({
     var pw    = $('input[name="password"]').val();
 
     if (email.indexOf('@') === -1) {
-        $('span').html("email yo"); 
+        $('span').html("Missing @"); 
+        $('span').addClass('error');
         return;
     }
 
     if (pw.length < 8) {
         $('span').html("Password is too short");
+        $('span').addClass('error');
         return;
     }
 
@@ -45,15 +47,18 @@ app.LoginView = Backbone.View.extend({
     };
 
 
-    var url = 'http://protected-forest-2584.herokuapp.com/users/sign_in';
+    var url = app.rootUrl + 'users/sign_in';
     $.post(url, payload)
       .done( function(data) {
       document.cookie = "authentication_token=" + data.user.authentication_token;
       document.cookie = "email=" + data.user.email;
+      document.cookie = "id=" + data.user.id;
       document.cookie = "path=/";
       //document.cookie = "expires=Fri, 31 Dec 9999 23:59:59 GMT";
+      console.log(data);
       app.user = new app.User({ auth_token: data.user.authentication_token,
-                                email: data.user.email
+                                email: data.user.email,
+                                id: data.user.id,
                               });
 
       app.main.navigate('game', { trigger: true });
@@ -62,6 +67,7 @@ app.LoginView = Backbone.View.extend({
     .fail( function(data) {
         var err = JSON.parse(data.responseText);
         $('span').html(err.error);
+        $('span').addClass('error');
       });
 
   },

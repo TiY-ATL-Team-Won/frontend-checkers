@@ -12,6 +12,11 @@ body {
 
 a {
   text-decoration: none;
+  color: white;
+
+  &:visited {
+    color: white;
+  }
 }
 
 
@@ -19,6 +24,23 @@ a {
   overflow: auto;
   margin: 0 auto;
 }
+
+.nav {
+  list-style: none;
+  background-color: black;
+
+  li {
+    display: inline-block;
+    padding: 8px 12px;
+    color: white;
+    background-color: black;
+
+    &:hover {
+      background-color: gray;
+    }
+  }
+}
+
 
 .welcome-container {
   padding-top: 25px;
@@ -75,11 +97,20 @@ a {
     padding: 8px 12px;
     width: 100%;
     border-radius: 3px;
+    margin-bottom: 12px;
 
     &:hover {
       background-color: lightgreen;
       border: 1px solid green;
     }
+  }
+
+  span.error {
+    width: 100%;
+    color: white;
+    background-color: red;
+    padding: 8px 12px;
+    margin-top: 12px;
   }
 }
 

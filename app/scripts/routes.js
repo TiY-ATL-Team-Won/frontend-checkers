@@ -12,7 +12,7 @@ app.mainRouter = Backbone.Router.extend({
     'login': 'login',
     'register': 'register',
     'user': 'user',
-    'game': 'game',
+    'game/:gid(/)': 'game',
   },
 
 
@@ -68,9 +68,8 @@ app.mainRouter = Backbone.Router.extend({
     app.userView = new app.UserView();
   },
 
-  game: function() {
-    app.gameView = new app.GameView();
-
+  game: function(gid) {
+    app.gameView = new app.GameView({ gid: gid });
   },
 
   

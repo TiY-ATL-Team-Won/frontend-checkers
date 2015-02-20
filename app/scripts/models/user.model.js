@@ -21,19 +21,15 @@ app.User = Backbone.Model.extend({
   },
 
  //app.userUrl: 'http://tiy-atl-fe-server.herokuapp.com/collections/asdfjlahsldjhfiuehoaiuhsdofuhoaiushdfouhasodfuhaosudhfoaiushdf;'//
- 
-  rank = new app.User(defaults);
+  
 
-    rank.fetch({
-    success: function(rank){
-    console.log(rank());
-    }
   });
 
-});
+
 
  
 
 
 
 }());
+

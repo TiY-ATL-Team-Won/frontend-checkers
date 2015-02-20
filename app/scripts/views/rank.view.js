@@ -15,11 +15,14 @@ app.RankView = Backbone.View.extend({
 	initialize: function() {
     this.render();
   },
-  	render: function() {
-    $('.display').html(this.el);
-    this.$el.html(this.template(app.rank.attributes));
-  }
-
+  
+render: function() {
+  var self = this;
+  $.get(app.userUrl).done( function() {
+    $('.display').html(self.el);
+      self.$el.html(self.template(app.user));
+  });
+},
   	
     
 
@@ -31,4 +34,4 @@ app.RankView = Backbone.View.extend({
 
 
 
-
+ 

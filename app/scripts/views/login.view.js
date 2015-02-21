@@ -61,7 +61,7 @@ app.LoginView = Backbone.View.extend({
                                 id: data.user.id,
                               });
 
-      app.main.navigate('game', { trigger: true });
+      app.main.navigate('user', { trigger: true });
     })
   
     .fail( function(data) {

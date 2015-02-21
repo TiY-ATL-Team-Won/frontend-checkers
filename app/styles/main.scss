@@ -4,7 +4,7 @@
 
 // Custom Styles
 body {
-  background: url("http://www.zingerbugimages.com/backgrounds/brown_marble.jpg");
+  //background: url("http://www.zingerbugimages.com/backgrounds/brown_marble.jpg");
   //background: #fafafa;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #333;
@@ -60,7 +60,7 @@ a {
     border-top-right-radius: 3px;
 
     &:hover {
-      background-color: lightgreen;
+      background-color: #00CC1C;
     }
   }
 
@@ -71,7 +71,7 @@ a {
     border-bottom-right-radius: 3px;
 
     &:hover {
-      background-color: lightblue;
+      background-color: #0E7CFF;
     }
   }
 }
@@ -93,14 +93,14 @@ a {
   input[type="submit"] {
     background-color: green;
     color: white;
-    border: 1px solid lightgreen;
+    border: 1px solid #00CC1C;
     padding: 8px 12px;
     width: 100%;
     border-radius: 3px;
     margin-bottom: 12px;
 
     &:hover {
-      background-color: lightgreen;
+      background-color: #00CC1C;
       border: 1px solid green;
     }
   }
@@ -117,12 +117,40 @@ a {
 
 
 // BOARD + CHECKERS
+
+.game-container {
+  text-align: center;
+  font-size: 0;
+
+  img {
+    width: 50px;
+  }
+
+  .game-btn {
+    font-size: 16px;
+  }
+
+  .game-btn {
+    background-color: green;
+    padding: 8px 12px;
+    display: inline-block;
+    border-radius: 3px;
+    margin-bottom: 15px;
+
+    &:hover {
+      background-color: #00CC1C;
+    }
+  }
+}
+
+
 span[data-color] {
-  width: 25px;
-  height: 25px;
+  width: 50px;
+  height: 50px;
   display: inline-block;
   margin: 0;
   font-size: 0;
+  vertical-align: top;
 }
 
 span[data-color="white"] {

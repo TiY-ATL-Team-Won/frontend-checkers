@@ -12,7 +12,9 @@ app.mainRouter = Backbone.Router.extend({
     'login': 'login',
     'register': 'register',
     'user': 'user',
+    'logout': 'logout',
     'game/:gid(/)': 'game',
+    'new': 'newGame',
   },
 
 
@@ -36,7 +38,8 @@ app.mainRouter = Backbone.Router.extend({
       }
     } else {
       app.user = new app.User({ auth_token: app.userCookie.authentication_token,
-                                email: app.userCookie.email
+                                email: app.userCookie.email,
+                                id: app.userCookie.id,
                               });
 
       $.ajaxSetup({
@@ -64,6 +67,12 @@ app.mainRouter = Backbone.Router.extend({
     app.registerView = new app.RegisterView();
   },
 
+  logout: function() {
+    app.userCookie = "";
+    document.cookie = "expires=Thu, 01 Jan 1970 00:00:01 GMT";
+    app.main.navigate('welcome', { trigger: true });
+  },
+
   user: function() {
     app.userView = new app.UserView();
   },
@@ -72,6 +81,13 @@ app.mainRouter = Backbone.Router.extend({
     app.gameView = new app.GameView({ gid: gid });
   },
 
+  newGame: function() {
+    $.post(app.rootUrl + "games")
+      .done( function(data) { 
+        console.log(data);
+        app.main.navigate('game/' + data.game.id, { trigger: true} );
+      });
+  },
   
 
 });

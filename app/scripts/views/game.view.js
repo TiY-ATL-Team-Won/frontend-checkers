@@ -15,21 +15,13 @@ app.GameView = Backbone.View.extend({
     app.game = app.game || {};
     app.game.board = app.game.board || [];
     app.game.player = app.game.player || 'Player 1';
-    // TESTING, remove me!
-    app.game.board = [ [1,0,1,0,1,0,1,0],
-                         [0,1,0,1,0,1,0,1],
-                         [1,0,1,0,1,0,1,0],
-                         [0,0,0,0,0,0,0,0],
-                         [0,0,0,0,0,0,0,0],
-                         [0,2,0,2,0,2,0,2],
-                         [2,0,2,0,2,0,2,0],
-                         [0,2,0,2,0,2,0,2] ];
+
     this.g = opts.gid;
     $('.display').html(this.el);
     this.render();
   },
 
-  piece: { 
+  piece: {
     selected: false,
     x: -1,
     y: -1,
@@ -48,17 +40,14 @@ app.GameView = Backbone.View.extend({
 
     // player turn?
     if (app.game.turn !== player) { return; }
-    console.log("myturn");
     // force selection on black squares only
     if (square === 'white') { return; }
     // must select piece first
     if (!this.piece.selected && type === 0) { return; }
-    console.log("checker, not board");
 
     // must select your own peice
-    if (!this.piece.selected && (!(player === type || 
+    if (!this.piece.selected && (!(player === type ||
                                  player === type - 2))) { return; }
-    console.log("own"); 
     // selected piece should hightlight
     if (!this.piece.selected) {
       sel.addClass('selected');
@@ -76,11 +65,11 @@ app.GameView = Backbone.View.extend({
       } else {
         // if jump, clear peice off board...
         // move
-        movePiece(self.piece.type, self.piece.x, self.piece.y, col, row); 
+        movePiece(self.piece.type, self.piece.x, self.piece.y, col, row);
         reset();
       }
-          
-    } 
+
+    }
 
     function reset () {
       $('.selected').removeClass('selected');
@@ -97,27 +86,33 @@ app.GameView = Backbone.View.extend({
       var y = py +  self.piece.y;
       var x1 = self.piece.x - 1;
       var x2 = self.piece.x + 1;
-      
+
       // without jumps there can be a max of two moves
-      var move1 = $('span[data-row="'+ y +'"]span[data-col="'+ x1 +'"]' + 
+      var move1 = $('span[data-row="'+ y +'"]span[data-col="'+ x1 +'"]' +
                     'span[data-type="0"]span[data-color="black"]');
       var move2 = $('span[data-row="'+ y +'"]span[data-col="'+ x2 +'"]' +
                     'span[data-type="0"]span[data-color="black"]');
       move1.addClass('selected');
       move2.addClass('selected');
 
-      // only show one jump out.
+      // currently only show one jump out.
       var o = app.game.player === 1 ? 2 : 1;
-       y += py;
+     // if no move, means blocking peice, so check for avaiable jump
+      var block1 = $('span[data-row="'+ y +'"]span[data-col="'+ x1 +'"]' +
+                    'span[data-type="' + o + '"]span[data-color="black"]');
+      var block2 = $('span[data-row="'+ y +'"]span[data-col="'+ x2 +'"]' +
+                    'span[data-type="' + o + '"]span[data-color="black"]');
+
+      y += py;
       x1 -= 1;
       x2 += 1;
-      // if no move, means blocking peice, so check for avaiable jump
-      if (!move1.length) {
-        var jmp1 = $('span[data-row="'+ y +'"]span[data-col="'+ x1 +'"]' + 
+ 
+      if (block1.length) {
+        var jmp1 = $('span[data-row="'+ y +'"]span[data-col="'+ x1 +'"]' +
                      'span[data-type="0"]span[data-color="black"]');
         jmp1.addClass('selected');
       }
-      if (!move2.length) {
+      if (block2.length) {
         var jmp2 = $('span[data-row="'+ y +'"]span[data-col="'+ x2 +'"]' +
                      'span[data-type="0"]span[data-color="black"]');
         jmp2.addClass('selected');
@@ -125,18 +120,29 @@ app.GameView = Backbone.View.extend({
   }
 
     function movePiece(checker, originX, originY, destX, destY) {
-      // send ajax request
-      //$.postJSON();
-      app.game.board[originY][originX] = 0;
-      app.game.board[destY][destX] = checker;
-      // render, reset when board returns.
-      self.render();
+      var move = { x: originX, y: originY,
+        move: [[destX, destY]], user_id: app.user.id,
+      };
+
+      var endpoint = app.rootUrl + 'games/' + self.g;
+
+      $.ajax({
+        url: endpoint,
+        type: 'PUT',
+        contentType: 'application/json',
+        data: JSON.stringify(move),
+      })
+      .done( function(data) {
+        console.log(data);
+        self.render();
+      });
+
     }
 
     function clearPiece(x, y) {
       app.game.board[y][x] = 0;
     }
-        
+
   },
 
   render: function() {
@@ -145,13 +151,28 @@ app.GameView = Backbone.View.extend({
       app.game.board = data.game.board;
       app.game.turn  = data.game.turn_count;
       var board = self.transformBoard();
-      
-      app.game.player = data.game.users[0].email === app.userCookie.email ?
-        1 : 2;
-      //app.game.player = 1;
+      console.log(data);
+      if (data.game.users[0].email === app.userCookie.email) {
+        app.game.player = 1;
+        app.game.opponet = {};
+        if (data.game.users.length === 2) {
+          app.game.opponet.email = data.game.users[1].email;
+          app.game.opponet.id    = data.game.users[1].id;
+        }
+      } else {
+        app.game.player = 2;
+        app.game.opponet = {};
+        app.game.opponet.email = data.game.users[0].email;
+        app.game.opponet.id    = data.game.users[0].id;
 
-      //$('.display').html(self.el);
+      }
+
       self.$el.html(self.template(board));
+      if (app.game.turn !== app.game.player) {
+        setTimeout( function() {
+          self.render();
+        }, 2000);
+      }
     });
   },
 
@@ -161,10 +182,10 @@ app.GameView = Backbone.View.extend({
       var r = [];
       for (var col = 0; col < app.game.board[row].length; col++) {
         var color = (row + col) % 2 === 0 ? "black" : "white";
-        var tmp = { row: row, col: col, color: color, 
+        var tmp = { row: row, col: col, color: color,
                       type: app.game.board[row][col] };
 
-        r.push(tmp); 
+        r.push(tmp);
       }
       b.push(r);
     }

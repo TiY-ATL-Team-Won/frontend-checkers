@@ -14,18 +14,33 @@ app.RankView = Backbone.View.extend({
 
 	initialize: function() {
     	this.render();
-    	app.players.list = [];
+    	app.players = app.players || [];
     	//console.log('this');
   	},
   	
 	render: function() {
-  		var self = this;
-  		$.get(app.rootUrl + 'users/' + 'leaderboard/' + app.user.id).done (function (data) {
-  			app.players.list = app.data.list;
-	
-	});
+  		$.get(app.rootUrl + 'users/leaderboard/').done (function (data) {
+        
 
- },
+       //var ranking = app.RankView; 
+       //console.log(ranking);
+	     //_.sortBy(ranking, 'experience');
+       //need to revers highest num first
+       //$('.display').html(this.el);
+      // this.$el.html(this.template());
+        
+      });
+
+    }, 
+
+          
+       
+  	
+        				
+
+
+
+ 
 
 });
 

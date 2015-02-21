@@ -95,25 +95,26 @@ app.GameView = Backbone.View.extend({
       move1.addClass('selected');
       move2.addClass('selected');
 
-      // only show one jump out.
+      // currently only show one jump out.
       var o = app.game.player === 1 ? 2 : 1;
      // if no move, means blocking peice, so check for avaiable jump
       var block1 = $('span[data-row="'+ y +'"]span[data-col="'+ x1 +'"]' +
-                    'span[data-type="0"]span[data-color="black"]');
+                    'span[data-type="' + o + '"]span[data-color="black"]');
       var block2 = $('span[data-row="'+ y +'"]span[data-col="'+ x2 +'"]' +
-                    'span[data-type="0"]span[data-color="black"]');
+                    'span[data-type="' + o + '"]span[data-color="black"]');
+
       y += py;
       x1 -= 1;
       x2 += 1;
  
-      if (!block1.length) {
+      if (block1.length) {
         var jmp1 = $('span[data-row="'+ y +'"]span[data-col="'+ x1 +'"]' +
-                     'span[data-type="' + o + '"]span[data-color="black"]');
+                     'span[data-type="0"]span[data-color="black"]');
         jmp1.addClass('selected');
       }
-      if (!block2.length) {
+      if (block2.length) {
         var jmp2 = $('span[data-row="'+ y +'"]span[data-col="'+ x2 +'"]' +
-                     'span[data-type="' + o + '"]span[data-color="black"]');
+                     'span[data-type="0"]span[data-color="black"]');
         jmp2.addClass('selected');
       }
   }

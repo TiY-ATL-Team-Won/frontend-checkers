@@ -26,6 +26,8 @@ app.GameView = Backbone.View.extend({
     x: -1,
     y: -1,
     type: -1,
+    jump: false,
+    jumpList: [],
   },
 
   select: function(e) {
@@ -57,6 +59,7 @@ app.GameView = Backbone.View.extend({
       this.piece.type = type;
       // available moves should as well
       highlightPossibleMoves();
+      hightLightPossibleJumps();
     } else if (this.piece.selected && sel.hasClass('selected')) {
       // toggling off selected peice should toggle all off
       if (col === self.piece.x && row === self.piece.y) {
@@ -94,6 +97,16 @@ app.GameView = Backbone.View.extend({
                     'span[data-type="0"]span[data-color="black"]');
       move1.addClass('selected');
       move2.addClass('selected');
+  }
+
+    function hightLightPossibleJumps() {
+      // player 1 at top, moves down rows, so +1
+      // player 2 at bot, moves up rows,   so -1
+      var py = player === 1 ? 1 : -1;
+      var y = py +  self.piece.y;
+      var x1 = self.piece.x - 1;
+      var x2 = self.piece.x + 1;
+
 
       // currently only show one jump out.
       var o = app.game.player === 1 ? 2 : 1;
@@ -117,7 +130,8 @@ app.GameView = Backbone.View.extend({
                      'span[data-type="0"]span[data-color="black"]');
         jmp2.addClass('selected');
       }
-  }
+
+    }
 
     function movePiece(checker, originX, originY, destX, destY) {
       var move = { x: originX, y: originY,
@@ -145,8 +159,14 @@ app.GameView = Backbone.View.extend({
 
   },
 
-  render: function() {
+  render: function(which) {
     var self = this;
+    if (which === 'local') {
+      var board = self.transformBoard(); 
+      self.$el.html(self.template(board));
+      return;
+    }
+
     $.get(app.rootUrl + 'games/' + this.g).done( function(data) {
       app.game.board = data.game.board;
       app.game.turn  = data.game.turn_count;

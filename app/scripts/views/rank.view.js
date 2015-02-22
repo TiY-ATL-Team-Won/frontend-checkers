@@ -25,7 +25,7 @@ app.RankView = Backbone.View.extend({
 
   		var self = this;
   		$.get(app.rootUrl + 'users/leaderboard/').done (function (data) {
-  		self.$el.html(this.template(data));
+  		self.$el.html(self.template(data));
  		
   		});
 	},

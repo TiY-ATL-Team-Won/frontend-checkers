@@ -6,7 +6,7 @@ app.RankView = Backbone.View.extend({
 	className: 'rank-container',
 
 	events: {
-		'submit': 'createNewUser',
+		'submit': 'Leaderboard',
     	//unknown right now//
 	},
 
@@ -14,13 +14,18 @@ app.RankView = Backbone.View.extend({
 
 	initialize: function() {
     	this.render();
-    	console.log('this');
+    	
   	},
   
 	render: function() {
   		var self = this;
-  		//$.get(app.rootUrl + 'users/' + app.user.id).done (function (data) {
-  		//});
+  		$.get(app.rootUrl + 'users/leaderboard/').done (function (data) {
+  		
+  		//var ranking =  new app.RankView; 
+  		//_.sortby(data, 'experience');
+  		self.$el.html(this.template(data));
+ 		// }
+  		});
 	},
 
 

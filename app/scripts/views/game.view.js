@@ -97,6 +97,20 @@ app.GameView = Backbone.View.extend({
                     'span[data-type="0"]span[data-color="black"]');
       move1.addClass('selected');
       move2.addClass('selected');
+
+      // kings can move the other way. 
+      if (self.piece.type === 3 || self.piece.type === 4) {
+        py = player === 1 ? -1 : 1;
+        y = py +  self.piece.y;
+        var movek1 = $('span[data-row="'+ y +'"]span[data-col="'+ x1 +'"]' +
+                      'span[data-type="0"]span[data-color="black"]');
+        var movek2 = $('span[data-row="'+ y +'"]span[data-col="'+ x2 +'"]' +
+                      'span[data-type="0"]span[data-color="black"]');
+        movek1.addClass('selected');
+        movek2.addClass('selected');
+      }
+
+
   }
 
     function hightLightPossibleJumps() {
@@ -107,7 +121,6 @@ app.GameView = Backbone.View.extend({
       var x1 = self.piece.x - 1;
       var x2 = self.piece.x + 1;
 
-
       // currently only show one jump out.
       var o = app.game.player === 1 ? 2 : 1;
      // if no move, means blocking peice, so check for avaiable jump
@@ -115,21 +128,70 @@ app.GameView = Backbone.View.extend({
                     'span[data-type="' + o + '"]span[data-color="black"]');
       var block2 = $('span[data-row="'+ y +'"]span[data-col="'+ x2 +'"]' +
                     'span[data-type="' + o + '"]span[data-color="black"]');
+      
+       
+      o = app.game.player === 1 ? 4 : 3;
+      var block3 = $('span[data-row="'+ y +'"]span[data-col="'+ x1 +'"]' +
+                    'span[data-type="' + o + '"]span[data-color="black"]');
+      var block4 = $('span[data-row="'+ y +'"]span[data-col="'+ x2 +'"]' +
+                    'span[data-type="' + o + '"]span[data-color="black"]');
+
 
       y += py;
       x1 -= 1;
       x2 += 1;
  
-      if (block1.length) {
+      if (block1.length || block3.length) {
         var jmp1 = $('span[data-row="'+ y +'"]span[data-col="'+ x1 +'"]' +
                      'span[data-type="0"]span[data-color="black"]');
         jmp1.addClass('selected');
       }
-      if (block2.length) {
+      if (block2.length || block4.length) {
         var jmp2 = $('span[data-row="'+ y +'"]span[data-col="'+ x2 +'"]' +
                      'span[data-type="0"]span[data-color="black"]');
         jmp2.addClass('selected');
       }
+
+      
+      // kings can jump backwards, test the other way.
+      if (self.piece.type === 3 || self.piece.type === 4) {
+        py = player === 1 ? 1 : -1;
+        y = py +  self.piece.y;
+        x1 = self.piece.x - 1;
+        x2 = self.piece.x + 1;
+
+        // currently only show one jump out.
+        o = app.game.player === 1 ? 2 : 1;
+       // if no move, means blocking peice, so check for avaiable jump
+        block1 = $('span[data-row="'+ y +'"]span[data-col="'+ x1 +'"]' +
+                      'span[data-type="' + o + '"]span[data-color="black"]');
+        block2 = $('span[data-row="'+ y +'"]span[data-col="'+ x2 +'"]' +
+                      'span[data-type="' + o + '"]span[data-color="black"]');
+         
+        o = app.game.player === 1 ? 4 : 3;
+        block3 = $('span[data-row="'+ y +'"]span[data-col="'+ x1 +'"]' +
+                      'span[data-type="' + o + '"]span[data-color="black"]');
+        block4 = $('span[data-row="'+ y +'"]span[data-col="'+ x2 +'"]' +
+                      'span[data-type="' + o + '"]span[data-color="black"]');
+
+        y += py;
+        x1 -= 1;
+        x2 += 1;
+   
+        if (block1.length || block3.length) {
+          var jmp1 = $('span[data-row="'+ y +'"]span[data-col="'+ x1 +'"]' +
+                       'span[data-type="0"]span[data-color="black"]');
+          jmp1.addClass('selected');
+        }
+        if (block2.length || block4.length) {
+          var jmp2 = $('span[data-row="'+ y +'"]span[data-col="'+ x2 +'"]' +
+                       'span[data-type="0"]span[data-color="black"]');
+          jmp2.addClass('selected');
+        }
+      }
+
+
+
 
     }
 

@@ -30,6 +30,11 @@ app.GameView = Backbone.View.extend({
     jumpList: [],
   },
 
+  message: {
+    type: -1,
+    message: "",
+  },
+
   select: function(e) {
     e.stopPropagation();
     var sel = $(e.currentTarget);
@@ -209,6 +214,8 @@ app.GameView = Backbone.View.extend({
         data: JSON.stringify(move),
       })
       .done( function(data) {
+        self.message.type = data.message_type;
+        self.message.message = data.message;
         console.log(data);
         self.render();
       });
@@ -232,7 +239,10 @@ app.GameView = Backbone.View.extend({
     $.get(app.rootUrl + 'games/' + this.g).done( function(data) {
       app.game.board = data.game.board;
       app.game.turn  = data.game.turn_count;
+      var messageType = data.game.message_type;
+      var message     = data.game.message;
       var board = self.transformBoard();
+
       console.log(data);
       if (data.game.users[0].email === app.userCookie.email) {
         app.game.player = 1;
@@ -250,6 +260,9 @@ app.GameView = Backbone.View.extend({
       }
 
       self.$el.html(self.template(board));
+      if (self.message.type === 0) {
+        self.$el.append('<span class="error">' + self.message.message + '</span>');
+      }
       if (app.game.turn !== app.game.player) {
         setTimeout( function() {
           self.render();

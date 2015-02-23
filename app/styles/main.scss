@@ -123,7 +123,7 @@ a {
   font-size: 0;
 
   img {
-    width: 50px;
+    width: 44px;
   }
 
   .game-btn {
@@ -141,6 +141,17 @@ a {
       background-color: #00CC1C;
     }
   }
+
+  span.error {
+    width: 100%;
+    color: white;
+    background-color: red;
+    padding: 8px 12px;
+    font-size: 18px;
+    display: block;
+    margin-top: 25px;
+  }
+
 }
 
 
@@ -163,7 +174,7 @@ span[data-color="black"] {
   background-color: black;
   
   &.selected {
-    border: 3px solid green;
+    border: 3px solid #00CC1C;
   }
 }
 
